@@ -39,7 +39,7 @@ class RULosses:
     
     def import_data(self, keep_losses_direction: bool=False):
         # russian losses
-        df = pd_read_from_path(self.file_path)
+        df = path2df(self.file_path)
     
         # data corrige import and apply
         df_corrected = df.copy()
@@ -131,7 +131,8 @@ class RULosses:
             axs[cc].title.set_text("Losses of " + columns[cc])
             axs[cc].legend(events if "legend" not in kwargs.keys() else kwargs["legend"], loc="upper right")
         plt.subplots_adjust(hspace=0.5) # give room between stacked subplots
-        
+        plt.show() 
+
         return fig, axs
 
 
@@ -147,6 +148,6 @@ if __name__ == '__main__':
     loss.cond_plot(
                    columns=["field artillery","special equipment","anti-aircraft warfare","tank"],
                    events=['2022-02-24','2022-08-01','2023-05-01'],
-                   legend=['invasion', 'kherson+kharkiv', 'summer 23'],
+                   legend=['Invasion Feb 2022', 'Kherson+Kharkiv Ago 2022', 'Zaporizhzhia+Donetsk Jun 2023'],
                    figsize=(8,12), ls='-'
                   )
